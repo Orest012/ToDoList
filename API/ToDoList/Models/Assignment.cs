@@ -24,8 +24,10 @@ public partial class Assignment
     [ForeignKey("User")]
     public int UserId { get; set; }
 
-    [ForeignKey("Category")]
-    public int? CategoryId { get; set; }
+    //[ForeignKey("Category")]
+    //public int? CategoryId { get; set; }
+
+    public string? CategoryName { get; set; }
 
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime? CreatedAt { get; set; }

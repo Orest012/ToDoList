@@ -10,6 +10,14 @@ using ToDoList.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost",
+        builder => builder
+            .WithOrigins("http://localhost:4200")  
+            .AllowAnyMethod()  
+            .AllowAnyHeader());  
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -49,7 +57,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
@@ -66,8 +73,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
-
 var app = builder.Build();
+
+app.UseCors("AllowLocalhost");  
 
 if (app.Environment.IsDevelopment())
 {
@@ -77,6 +85,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();  
 app.UseAuthorization();
 
 app.MapControllers();

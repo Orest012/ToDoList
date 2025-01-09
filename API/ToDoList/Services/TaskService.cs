@@ -26,8 +26,8 @@ namespace ToDoList.Services
                 Title = newTask.Title,
                 Description = newTask.Description,
                 DueDate = newTask.DueDate,
-                UserId = newTask.UserId,
-                CategoryId = newTask.CategoryId,
+                UserId = 1,
+                //CategoryId = 1,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -45,7 +45,7 @@ namespace ToDoList.Services
                 IsCompleted = newAssignment.IsCompleted,
                 DueDate = newAssignment.DueDate,
                 UserName = user.Username, 
-                CategoryId = newAssignment.CategoryId,
+                //CategoryId = newAssignment.CategoryId,
                 CreatedAt = newAssignment.CreatedAt,
                 UpdatedAt = newAssignment.UpdatedAt
             };
@@ -75,7 +75,8 @@ namespace ToDoList.Services
                     IsCompleted = a.IsCompleted,
                     DueDate = a.DueDate,
                     UserName = a.User.Username,
-                    CategoryId = a.CategoryId,
+                    CategoryName = a.CategoryName,
+                    //CategoryId = a.CategoryId,
                     CreatedAt = a.CreatedAt,
                     UpdatedAt = a.UpdatedAt
                 })
@@ -112,7 +113,7 @@ namespace ToDoList.Services
                 IsCompleted = assignment.IsCompleted,
                 DueDate = assignment.DueDate,
                 UserName = assignment.User.Username,
-                CategoryId = assignment.CategoryId,
+               // CategoryId = assignment.CategoryId,
                 CreatedAt = assignment.CreatedAt,
                 UpdatedAt = assignment.UpdatedAt
             };
@@ -130,8 +131,11 @@ namespace ToDoList.Services
             task.Description = newTask.Description;
             task.IsCompleted = newTask.IsCompleted;
             task.DueDate = newTask.DueDate;
-            task.CategoryId = newTask.CategoryId;
             task.UpdatedAt = DateTime.UtcNow;
+            if (newTask.categoryName != null)
+            {
+                task.CategoryName = newTask.categoryName;
+            }
             var user = _dbContext.Users.FirstOrDefault(u => u.UserId == task.UserId);
 
 
@@ -146,7 +150,7 @@ namespace ToDoList.Services
                 IsCompleted = task.IsCompleted,
                 DueDate = task.DueDate,
                 UserName = user.Username,
-                CategoryId = task.CategoryId,
+                //CategoryId = task.CategoryId,
                 CreatedAt = task.CreatedAt,
                 UpdatedAt = task.UpdatedAt
             });

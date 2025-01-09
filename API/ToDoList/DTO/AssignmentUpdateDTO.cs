@@ -7,6 +7,7 @@
         public string? Description { get; set; }
         public bool? IsCompleted { get; set; }
         public DateTime? DueDate { get; set; }
-        public int? CategoryId { get; set; }
+        public string? categoryName { get; set; }
+
     }
 }

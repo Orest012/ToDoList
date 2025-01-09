@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Threading.Tasks;
 using ToDoList.Data;
 using ToDoList.DTO;
@@ -48,6 +50,19 @@ namespace ToDoList.Services
 
             _dbContext.Categories.Remove(category);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public List<Category> GetAllCategories()
+        {
+            return _dbContext.Categories
+                .Include(a => a.User)
+                .Select(a => new Category
+                {
+                    CategoryId = a.CategoryId,
+                    CategoryName = a.CategoryName,
+                    UserId = a.UserId,
+                })
+                .ToList();
         }
     }
 }

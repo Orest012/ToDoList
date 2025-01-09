@@ -11,6 +11,7 @@ namespace ToDoList.DTO
         public DateTime? DueDate { get; set; }
         public string UserName { get; set; } = null!; // Ім'я користувача
         public int? CategoryId { get; set; }
+        public string? CategoryName { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
     }

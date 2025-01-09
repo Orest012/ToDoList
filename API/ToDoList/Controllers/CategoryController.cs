@@ -17,6 +17,14 @@ namespace ToDoList.Controllers
             _categoryService = categoryService;
         }
 
+        [HttpGet]
+        [Route("/GetAllCategories")]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var categories = _categoryService.GetAllCategories();
+            return Ok(categories);
+        }
+
         [HttpPost]
         [Route("/AddCategory")]
         public async Task<IActionResult> AddCategory([FromBody] CategoriesCreateDTO newCategory)

@@ -49,8 +49,9 @@ namespace ToDoList.Controllers
             return Ok(tasks);
         }
 
+
         [HttpDelete]
-        [Route("/DeteleTask/{id}")]
+        [Route("/DeleteTask/{id}")]
         public async Task<IActionResult> DeteleTask(int id)
         {
             if (id == 0)
@@ -73,7 +74,7 @@ namespace ToDoList.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message); // Обробка помилок
+                return BadRequest(ex.Message);
             }
         }
 
