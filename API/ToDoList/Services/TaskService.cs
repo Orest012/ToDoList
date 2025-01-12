@@ -26,6 +26,7 @@ namespace ToDoList.Services
                 Title = newTask.Title,
                 Description = newTask.Description,
                 DueDate = newTask.DueDate,
+                IsCompleted = false,
                 UserId = 1,
                 //CategoryId = 1,
                 CreatedAt = DateTime.UtcNow,
@@ -35,7 +36,7 @@ namespace ToDoList.Services
             _dbContext.Assignments.Add(newAssignment);
             await _dbContext.SaveChangesAsync();
 
-            var user = _dbContext.Users.FirstOrDefault(u => u.UserId == newTask.UserId);
+            var user = _dbContext.Users.FirstOrDefault(u => u.UserId == 1);
 
             return new AssignmentReadDTO
             {
